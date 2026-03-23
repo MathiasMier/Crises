@@ -21,7 +21,7 @@ indshare(r,t) = 1 ;
 regshare(r,t) = round(daref(r,t) / sum(rr$(not sameas(rr,"Britain")), daref(rr,t)),4) ;
 co2cap_r(r,t) = round(regshare(r,t) * co2sup(t),4) ;
 
-$if set fixets2030 $gdxin euetsmsr\co2mark_%pm%\co2out_basesce.gdx
+$if set fixets2030 $gdxin euetsmsr2023\co2mark_%pm%\co2out_basesce.gdx
 $if set fixets2030 $load co2elec_break=co2elec_out
 $if set fixets2030 $gdxin
 

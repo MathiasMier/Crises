@@ -45,7 +45,8 @@ gen_min2_nochp_oil(r,t)
 gen_min2_nochp_coal(r,t)
 ;
 
-$gdxin precal\precal_%n%.gdx
+$if not  set hours  $gdxin precal\precal_%n%.gdx
+$if      set hours  $gdxin database\setpar_%nh%.gdx
 $load gen_pump,gen_resv
 $load gen_min2_nucl,gen_min2_hydr,gen_min2_sola,gen_min2_wind
 $load gen_min2_ngas

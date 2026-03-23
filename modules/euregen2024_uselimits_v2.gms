@@ -8,8 +8,11 @@ ixfx_plus(i,r,t)
 ixfx_plus2(i,r,t)
 ;
 
-$if not  set fromd  $gdxin limits\%l%_newcap_bauprice.gdx
-$if      set fromd  $gdxin limits_days\%l%_newcap_bauprice.gdx
+$if      set fromsame   $gdxin limits\%sn%_%l%_newcap_bauprice.gdx
+$if      set from6d     $gdxin limits\6d_%l%_newcap_bauprice.gdx
+$if      set from15d    $gdxin limits\15d_%l%_newcap_bauprice.gdx
+$if      set from31s    $gdxin limits\31s_%l%_newcap_bauprice.gdx
+$if      set from119s   $gdxin limits\119s_%l%_newcap_bauprice.gdx
 $load ixfx, itfx, igfx
 $gdxin
 

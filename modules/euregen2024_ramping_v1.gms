@@ -84,4 +84,4 @@ capacity_rampdown(stwo(s),ivrt(ram(i),v,r,toptimize(t)))$(ramrate(i,v,r))..
                  RPPOS(s,i,v,r,t) =l=  ramrate(i,v,r) * XCS(s,i,v,r,t) ;
                  
 capacity_rampup(stwo(s),ivrt(ram(i),v,r,toptimize(t)))$(ramrate(i,v,r))..
-                 RPNEG(s,i,v,r,t) =l=  ramrate(i,v,r) * XCS(s,i,v,r,t) ;v,r,t) ;
+                 RPNEG(s,i,v,r,t) =l=  ramrate(i,v,r) * XCS(s,i,v,r,t) ;

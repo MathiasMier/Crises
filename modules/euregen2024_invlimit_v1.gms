@@ -5,6 +5,7 @@ tinvset(t) /2025,2026,2027,2028,2029/
 
 parameter
 invlimit(invset,r,t)
+$if      set longrun    invlimit_int(invset,r,t)
 ;
 
 invlimit("windon",r,"2024") = round(max(sum(windon(i),capt(i,"2023",r,"2023")),sum(windon(i),capt(i,"2022",r,"2022"))) + 3 * daref(r,"2022") / daref("Germany","2022"),4) ;
@@ -12,6 +13,9 @@ invlimit("windoff",r,"2024") = round(max(sum(windoff(i),capt(i,"2023",r,"2023"))
 invlimit("solarpv",r,"2024") = round(max(sum(sol(i),capt(i,"2023",r,"2023")),sum(sol(i),capt(i,"2022",r,"2022"))) + 5 * daref(r,"2022") / daref("Germany","2022"),4) ;
 invlimit(invset,r,"2030") = invlimit(invset,r,"2024") * 2 ;
 invlimit(invset,r,tinvset(t)) = round(invlimit(invset,r,"2024") + (invlimit(invset,r,"2030") - invlimit(invset,r,"2024")) * (t.val - 2024) / (2030 - 2024),4) ;
+
+$if      set longrun    invlimit_int(invset,r,t) = invlimit(invset,r,t) ;
+$if      set longrun    invlimit(invset,r,"2030") = sum(tmerge(tt), invlimit_int(invset,r,tt)) ;
 
 Equations
 investlimit_windon(r,t)
