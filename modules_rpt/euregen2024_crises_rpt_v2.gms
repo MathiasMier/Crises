@@ -162,7 +162,7 @@ $if not  set days   sharecap_crises(t,crises_set,r)$(loadmax(r,t) > 0) = cap_cri
 $if not  set days   shareafcap_crises(t,crises_set,r)$(loadmax(r,t) > 0) = afcap_crises(crises_set,r,t) / loadmax(r,t) + eps ;
 $if      set days   sharecap_crises(t,crises_set,r)$(loadmax_d(r,t) > 0) = cap_crises(crises_set,r,t) / loadmax_d(r,t) + eps ;
 $if      set days   shareafcap_crises(t,crises_set,r)$(loadmax_d(r,t) > 0) = afcap_crises(crises_set,r,t) / loadmax_d(r,t) + eps ;
-sharegen_crises(t,crises_set,r)$(daref(r,t) > 0) = gen_crises(crises_set,r,t) / supply(r,t) + eps ;
+sharegen_crises(t,crises_set,r)$(supply(r,t) > 0) = gen_crises(crises_set,r,t) / supply(r,t) + eps ;
 
 market_crises("nuc",r,t)$(sum(nuc(i), genera(t,r,i)) > 0) = sum(nuc(i), profit(t,r,i)) * 1e-3 / sum(nuc(i), genera(t,r,i)) + eps ;
 market_crises("irnw",r,t)$(sum(irnw(i), genera(t,r,i)) > 0) = sum(irnw(i), profit(t,r,i)) * 1e-3 / sum(irnw(i), genera(t,r,i)) + eps ;
@@ -237,11 +237,17 @@ freq(bins,r,t) = 0 ;
 *) ) ) ) ) ;
 
 *loop(t, loop(r, loop(s, loop(bins, if(price(s,r,t) >= (card(bins)-ord(bins)) * 50 and price(s,r,t) < (card(bins)-ord(bins)+1) * 50,
-loop(t, loop(r, loop(bins,
-    freq(bins,r,t) = sum(s$(price(s,r,t) >= bin_lower(bins) and price(s,r,t) < bin_upper(bins)), 1) ;
-) ) ) ;
+$if not  set days   loop(t, loop(r, loop(bins,
+$if not  set days       freq(bins,r,t) = sum(s$(price(s,r,t) >= bin_lower(bins) and price(s,r,t) < bin_upper(bins)), 1) ;
+$if not  set days   ) ) ) ;
 
-density(bins,r,t) = freq(bins,r,t) / card(s) + eps ;
+$if not  set days   density(bins,r,t) = freq(bins,r,t) / card(s) + eps ;
+
+$if      set days   loop(t, loop(r, loop(bins,
+$if      set days       freq(bins,r,t) = sum((sd,hd)$(price_d(sd,hd,r,t) >= bin_lower(bins) and price_d(sd,hd,r,t) < bin_upper(bins)), 1) ;
+$if      set days   ) ) ) ;
+
+$if      set days   density(bins,r,t) = freq(bins,r,t) / (24 * card(sd)) + eps ;
 
 parameter
 discostco2_tyrpt(tyrpt,r,t)
