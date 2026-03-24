@@ -1,4 +1,5 @@
-(A, introduction) First, start with downloading databases and model framework. Unzip model framework and place unzipped databases into the subfolder databases.
+(A, introduction) First, start with downloading databases and model framework. Unzip model framework and place unzipped databases into the subfolder databases. 
+Note that intermediary results of the iterative EU ETS modeling, investments limits, and inputs from the dynamic runs to conduct static ones are already included in the respective subfolders.
 
 The framework consists of
 1) gms.files (code)
@@ -49,7 +50,7 @@ Main text
 - Figure 1 comes from sheet "dia" in Diagrams_Fuelprices_RevisionCrises.xlsx
 - Table 1 comes from sheet "pfuel" in Tables_RevisionCrises.xlsx
 - Table 2 comes from sheet "Scenarios" in Diagrams_RevisionCrises.xlsx
-- Figure 2 was created with power point but the source is lost
+- Figure 2 comes from Iteration_RevisionCrises.pptx
 - Figure 3 comes from sheet "Dia" in Diagrams_RevisionCrises.xlsx
 - Figure 4 comes from sheet "Countryshares" in Diagrams_RevisionCrises.xlsx
 - Table 4 comes from sheet "TAB_nowreal_2022" in Diagrams_RevisionCrises.xlsx
